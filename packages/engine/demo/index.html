@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI Virtual Try-On Kiosk - Live Prototype</title>
+  <link rel="stylesheet" href="demo.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <div id="kiosk-app">
+    <div id="viewport-container">
+      <!-- Live Video Feed (Webcam Stream) -->
+      <video id="camera-video" autoplay playsinline muted></video>
+
+      <!-- Realtime Try-On Overlay Canvas (30-60 FPS) -->
+      <canvas id="tryon-canvas"></canvas>
+
+      <!-- Flash Overlay for Capture -->
+      <div id="flash-overlay"></div>
+
+      <!-- 3-2-1 Countdown Overlay -->
+      <div id="countdown-overlay">
+        <div id="countdown-number">3</div>
+      </div>
+
+      <!-- Kiosk UI HUD Overlay -->
+      <div class="ui-overlay">
+        <!-- Top Header Row -->
+        <div>
+          <div class="header-row">
+            <div class="brand-badge">MAISON DE VIRTUAL</div>
+
+            <!-- Reference UI: Translucent LIVE Pill at Top Center -->
+            <div class="live-pill" id="live-indicator">
+              <span class="live-dot"></span>
+              <span>LIVE</span>
+            </div>
+
+            <div class="header-controls">
+              <!-- Camera / Simulation Toggle -->
+              <button class="icon-btn" id="camera-toggle-btn" title="Toggle Live Webcam">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </button>
+
+              <!-- Layering Toggle (Combine Eyewear + Garment) -->
+              <button class="icon-btn" id="layer-toggle-btn" title="Toggle Layering (Complete Look)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </button>
+
+              <!-- Debug Overlay HUD Toggle -->
+              <button class="icon-btn" id="debug-toggle-btn" title="Toggle Diagnostic HUD">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="category-tabs" id="category-tabs">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Bottom Controls & Carousel Section -->
+        <div class="bottom-section">
+          <!-- Overlaid Elegant Product Title & Category Label -->
+          <div class="product-title-banner">
+            <h1 class="product-name" id="product-name">NOIR SILK BLAZER</h1>
+            <div class="product-meta">
+              <span class="product-category-label" id="category-label">OUTERWEAR</span>
+              <span>•</span>
+              <span class="product-price" id="product-price">$1,250</span>
+            </div>
+            <!-- Color Variant Dots -->
+            <div class="variants-row" id="variants-row"></div>
+          </div>
+
+          <!-- Horizontal Circular Product Carousel -->
+          <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- Action Bar: Large Capture Button at Bottom Center -->
+          <div class="action-bar">
+            <!-- Fit Adjustment Drawer Button -->
+            <button class="action-icon-btn" id="adjust-btn" title="Adjust Fit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+              <span>Fit</span>
+            </button>
+
+            <!-- Large Circular Capture Button -->
+            <button class="capture-btn" id="capture-btn" title="Take Try-On Photo">
+              <div class="capture-btn-inner"></div>
+            </button>
+
+            <!-- Ask Staff Button -->
+            <button class="action-icon-btn" id="staff-btn" title="Ask In-Store Staff">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Staff</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fit Adjustments Drawer -->
+      <div class="adjust-drawer" id="adjust-drawer">
+        <div class="drawer-header">
+          <h3 style="font-size: 15px; font-weight: 600;">Custom Fit Adjustments</h3>
+          <button class="icon-btn" id="close-adjust-btn" style="width: 28px; height: 28px;">&times;</button>
+        </div>
+        <div class="slider-group">
+          <label><span>Garment Scale</span><span id="val-scale">1.0x</span></label>
+          <input type="range" id="slider-scale" min="0.8" max="1.3" step="0.02" value="1.0">
+        </div>
+        <div class="slider-group">
+          <label><span>Horizontal Nudge</span><span id="val-offset-x">0</span></label>
+          <input type="range" id="slider-offset-x" min="-0.15" max="0.15" step="0.01" value="0">
+        </div>
+        <div class="slider-group">
+          <label><span>Vertical Nudge</span><span id="val-offset-y">0</span></label>
+          <input type="range" id="slider-offset-y" min="-0.15" max="0.15" step="0.01" value="0">
+        </div>
+        <div class="slider-group">
+          <label><span>Rotation Angle</span><span id="val-rotation">0°</span></label>
+          <input type="range" id="slider-rotation" min="-15" max="15" step="1" value="0">
+        </div>
+        <button class="btn btn-secondary" id="reset-adjust-btn" style="width: 100%; margin-top: 8px;">Reset Auto-Fit</button>
+      </div>
+
+      <!-- Result Snapshot & QR Mobile Transfer Modal -->
+      <div class="modal-backdrop" id="result-modal">
+        <div class="modal-content">
+          <h2 class="modal-title">Your Curated Look</h2>
+          <p class="modal-subtitle">Scan to transfer this look and product links to your phone</p>
+          
+          <div class="preview-snapshot-container">
+            <img id="preview-snapshot-img" alt="Try-On Look Preview">
+          </div>
+
+          <div class="qr-section">
+            <div class="qr-code-box">
+              <!-- SVG QR Code Icon for Mobile Scan -->
+              <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <rect width="100" height="100" fill="#ffffff" />
+                <path d="M10 10h30v30h-30zM15 15v20h20v-20zM22 22h6v6h-6z M60 10h30v30h-30zM65 15v20h20v-20zM72 22h6v6h-6z M10 60h30v30h-30zM15 65v20h20v-20zM22 72h6v6h-6z M50 15h6v12h-6z M50 35h6v6h-6z M45 45h10v10h-10z M60 50h12v6h-12z M78 50h12v12h-12z M60 68h6v12h-6z M72 70h18v6h-18z M72 82h12v8h-12z M50 75h8v15h-8z" fill="#0b0c0e"/>
+              </svg>
+            </div>
+            <div class="qr-text">
+              <h4>Instant Mobile Sync</h4>
+              <p>Point phone camera to save high-res look, buy sizes, or share to Instagram</p>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-secondary" id="modal-close-btn">Try Another</button>
+            <button class="btn btn-primary" id="download-look-btn">Download Look</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="demo.js"></script>
+</body>
+</html>

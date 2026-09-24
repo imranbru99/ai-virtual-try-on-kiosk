@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1200" width="700" height="1200">
+  <defs>
+    <linearGradient id="emeraldSilk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="45%" stop-color="#047857"/>
+      <stop offset="85%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="silkSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#047857" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#064e3b" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bodice -->
+  <path d="M 230 100 Q 350 140 470 100 L 450 300 Q 350 330 250 300 Z" fill="url(#emeraldSilk)"/>
+  <!-- V-Neck Drape -->
+  <path d="M 270 100 Q 350 220 430 100 L 390 280 Q 350 300 310 280 Z" fill="#022c22" opacity="0.3"/>
+  <!-- Waist Cincher -->
+  <path d="M 250 300 Q 350 330 450 300 L 460 380 Q 350 400 240 380 Z" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+  <!-- Flowing Gown Skirt -->
+  <path d="M 240 380 Q 350 400 460 380 L 620 1150 Q 350 1190 80 1150 Z" fill="url(#emeraldSilk)"/>
+  <!-- Satin Pleat Sheens -->
+  <path d="M 330 390 Q 340 750 260 1160" stroke="#6ee7b7" stroke-width="3" fill="none" opacity="0.4"/>
+  <path d="M 370 390 Q 380 750 440 1160" stroke="#6ee7b7" stroke-width="3" fill="none" opacity="0.4"/>
+</svg>

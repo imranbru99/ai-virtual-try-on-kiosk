@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900">
+  <defs>
+    <linearGradient id="knitIvory" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="50%" stop-color="#f5efe6"/>
+      <stop offset="100%" stop-color="#e8dec8"/>
+    </linearGradient>
+    <linearGradient id="knitRib" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eae0cf"/>
+      <stop offset="100%" stop-color="#d8cca8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#554433" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <!-- Sweater Torso -->
+    <path d="M 260 120 Q 400 160 540 120 L 640 280 L 590 820 L 210 820 L 160 280 Z" fill="url(#knitIvory)"/>
+    
+    <!-- Sleeves -->
+    <path d="M 260 120 L 130 320 L 80 660 L 150 680 L 210 360 Z" fill="#f0e7d8"/>
+    <path d="M 540 120 L 670 320 L 720 660 L 650 680 L 590 360 Z" fill="#f0e7d8"/>
+
+    <!-- Crewneck Collar Ribbing -->
+    <path d="M 330 115 Q 400 180 470 115 Q 400 145 330 115 Z" fill="url(#knitRib)" stroke="#c4b595" stroke-width="1.5"/>
+
+    <!-- Bottom Hem Ribbing -->
+    <rect x="210" y="780" width="380" height="40" rx="3" fill="url(#knitRib)"/>
+    <line x1="210" y1="780" x2="590" y2="780" stroke="#c4b595" stroke-width="1.5"/>
+
+    <!-- Subtle Knit Texture Lines -->
+    <path d="M 300 240 Q 400 260 500 240 M 290 340 Q 400 360 510 340 M 280 440 Q 400 460 520 440 M 270 540 Q 400 560 530 540" stroke="#dfd4bd" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </g>
+</svg>

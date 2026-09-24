@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250">
+  <defs>
+    <linearGradient id="goldFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe259"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <linearGradient id="lensGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3c72" stop-opacity="0.90"/>
+      <stop offset="50%" stop-color="#2a5298" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#e65c00" stop-opacity="0.60"/>
+    </linearGradient>
+    <filter id="glassGlare">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#glassGlare)">
+    <!-- Top Brow Bar -->
+    <path d="M 120 70 Q 300 55 480 70" stroke="url(#goldFrame)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Nose Bridge -->
+    <path d="M 260 90 Q 300 80 340 90" stroke="url(#goldFrame)" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+    <!-- Left Teardrop Lens -->
+    <path d="M 140 80 C 130 150 180 215 250 205 C 285 200 290 140 285 85 C 230 75 170 75 140 80 Z" fill="url(#lensGrad)" stroke="url(#goldFrame)" stroke-width="6"/>
+    <!-- Left Lens Specular Highlight -->
+    <path d="M 160 95 C 155 125 175 155 195 150 C 205 145 190 110 180 95 Z" fill="#ffffff" opacity="0.35"/>
+
+    <!-- Right Teardrop Lens -->
+    <path d="M 460 80 C 470 150 420 215 350 205 C 315 200 310 140 315 85 C 370 75 430 75 460 80 Z" fill="url(#lensGrad)" stroke="url(#goldFrame)" stroke-width="6"/>
+    <!-- Right Lens Specular Highlight -->
+    <path d="M 440 95 C 445 125 425 155 405 150 C 395 145 410 110 420 95 Z" fill="#ffffff" opacity="0.35"/>
+
+    <!-- Temples / Arms -->
+    <path d="M 125 78 L 60 70" stroke="url(#goldFrame)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 475 78 L 540 70" stroke="url(#goldFrame)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

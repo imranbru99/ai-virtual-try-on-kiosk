@@ -1,0 +1,29 @@
+{
+  "name": "ai-virtual-try-on-kiosk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered virtual try-on kiosk for retail stores, malls and exhibitions. Also deployable as a website, e-commerce widget or mobile app.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "dev:kiosk": "npm --workspace=@ai-tryon/kiosk run dev",
+    "build:engine": "npm --workspace=@ai-tryon/engine run build",
+    "test:engine": "npm --workspace=@ai-tryon/engine test",
+    "demo": "node scripts/serve_demo.mjs",
+    "test": "npm run test:engine"
+  },
+  "keywords": [
+    "virtual-try-on",
+    "ai-virtual-try-on",
+    "retail-kiosk",
+    "mediapipe",
+    "threejs",
+    "nextjs",
+    "laravel"
+  ],
+  "author": "AI Virtual Try-On Kiosk Contributors",
+  "license": "MIT"
+}

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 950" width="800" height="950">
+  <defs>
+    <linearGradient id="blazerBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24262b"/>
+      <stop offset="40%" stop-color="#141518"/>
+      <stop offset="100%" stop-color="#0b0c0e"/>
+    </linearGradient>
+    <linearGradient id="satinLapel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d4048"/>
+      <stop offset="50%" stop-color="#18191d"/>
+      <stop offset="100%" stop-color="#2a2c33"/>
+    </linearGradient>
+    <linearGradient id="goldButton" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d365"/>
+      <stop offset="100%" stop-color="#fda085"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#subtleShadow)">
+    <!-- Main Torso & Tailored Hems -->
+    <path d="M 230 110 Q 400 170 570 110 L 670 280 L 610 880 L 400 870 L 190 880 L 130 280 Z" fill="url(#blazerBody)"/>
+    
+    <!-- Left Sleeve -->
+    <path d="M 230 110 L 110 320 L 70 660 L 140 680 L 190 350 L 220 230 Z" fill="#18191d"/>
+    <!-- Right Sleeve -->
+    <path d="M 570 110 L 690 320 L 730 660 L 660 680 L 610 350 L 580 230 Z" fill="#18191d"/>
+
+    <!-- Left Lapel (Satin Peak) -->
+    <path d="M 330 140 L 270 340 L 370 420 L 370 560 L 340 560 L 250 360 L 300 140 Z" fill="url(#satinLapel)" stroke="#494d57" stroke-width="1.5"/>
+    <!-- Right Lapel (Satin Peak) -->
+    <path d="M 470 140 L 530 340 L 430 420 L 430 560 L 460 560 L 550 360 L 500 140 Z" fill="url(#satinLapel)" stroke="#494d57" stroke-width="1.5"/>
+
+    <!-- Deep V Chest Opening -->
+    <path d="M 330 140 Q 400 240 470 140 L 430 420 L 370 420 Z" fill="#0d0e10" opacity="0.3"/>
+
+    <!-- Welt Pocket with Pocket Square -->
+    <rect x="250" y="380" width="80" height="12" rx="2" fill="#2d3036" stroke="#40434b" stroke-width="1"/>
+    <polygon points="275,380 290,355 305,380" fill="#f8fafc"/>
+
+    <!-- Flap Pockets -->
+    <rect x="200" y="600" width="130" height="32" rx="4" fill="#1c1d22" stroke="#33363e" stroke-width="1.5"/>
+    <rect x="470" y="600" width="130" height="32" rx="4" fill="#1c1d22" stroke="#33363e" stroke-width="1.5"/>
+
+    <!-- Gold Anchor Buttons -->
+    <circle cx="400" cy="580" r="10" fill="url(#goldButton)" stroke="#d97706" stroke-width="1.5"/>
+    <circle cx="400" cy="670" r="10" fill="url(#goldButton)" stroke="#d97706" stroke-width="1.5"/>
+  </g>
+</svg>

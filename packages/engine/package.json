@@ -1,0 +1,24 @@
+{
+  "name": "@ai-tryon/engine",
+  "version": "1.0.0",
+  "description": "Framework-agnostic real-time virtual try-on engine using MediaPipe and 2D/3D warping",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "try-on",
+    "mediapipe",
+    "pose-detection",
+    "face-landmarker",
+    "warp-engine"
+  ],
+  "author": "AI Virtual Try-On Kiosk",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
